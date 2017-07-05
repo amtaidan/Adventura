@@ -5,7 +5,7 @@ using UnityEngine;
 public class Walking : MonoBehaviour {
 	public float speed;
 	CharacterController jimmy;
-
+	bool isSprinting = false;
 	// Use this for initialization
 	void Start () {
 		jimmy = GetComponent<CharacterController> ();
@@ -24,7 +24,13 @@ public class Walking : MonoBehaviour {
 		if (Input.GetKey (KeyCode.LeftShift)) {
 			transform.Translate (0f, -3f*Time.deltaTime, 0f);
 		}
-		if (Input.GetKey (KeyCode.LeftShift)) {
+		if (Input.GetKeyDown (KeyCode.LeftShift)) {
+			isSprinting = true;
+		}
+		if (Input.GetKeyUp (KeyCode.LeftShift)) {
+			isSprinting = false;
+		}
+		if (isSprinting == true) {
 			speed = 15;
 		}
 	}
