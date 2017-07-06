@@ -32,9 +32,17 @@ public class raycast : MonoBehaviour
 			// ...draw a green ray extending the distance of the collision
 			Debug.DrawRay (ray.origin, ray.direction * hit.distance, Color.green);
 			if (Input.GetKey (KeyCode.Mouse0)) {
-				if (hit.transform.gameObject.tag == "float cube") {
-					hit.transform.Translate(0f,50f*Time.deltaTime,0f);
-					Debug.Log ("click");
+				if (hit.transform.gameObject.tag == "Rhizopa" && PlayerScript.playerDamage == 5) {
+					RhizopaCombat.rhizHealth -= 5;
+				}
+				if (hit.transform.gameObject.tag == "Rhizopa (1)" && PlayerScript.playerDamage == 5) {
+					RhizopaCombat.rhiz1Health -= 5;
+				}
+				if (hit.transform.gameObject.tag == "Rhizopa (2)" && PlayerScript.playerDamage == 5) {
+					RhizopaCombat.rhiz2Health -= 5;
+				}
+				if (hit.transform.gameObject.tag == "Rhizopa (3)" && PlayerScript.playerDamage == 5) {
+					RhizopaCombat.rhiz3Health -= 5;
 				}
 			}
 
