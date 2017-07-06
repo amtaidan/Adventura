@@ -4,22 +4,43 @@ using UnityEngine;
 
 
 public class RhizopaCombat : MonoBehaviour {
-	public static int rhizHealth = 30;
-	public static int rhiz1Health = 30;
-	public static int rhiz2Health = 30;
-	public static int rhiz3Health = 30;
-	public static int rhizbossHealth = 30;
-
+	public int rhizHealth = 30;
+	public int rhizbossHealth = 300;
+	public static int damage = 5;
+	public bool newGun = false;
+	public int enemyCount = 4;
+	public GameObject door;
+	public static ParticleSystem pSystem;
+	public Transform player;
+	public float walkingDistance = 5.0f;
+	public float smoothTime = 10.0f;
+	private Vector3 smoothVelocity = Vector3.zero*20;
 
 	// Use this for initialization
 	void Start () {
-		
+		pSystem = GetComponent<ParticleSystem> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		transform.LookAt (player);
+		float distance = Vector3.Distance (transform.position, player.position);
+		if (distance < walkingDistance) {
+			transform.position = Vector3.SmoothDamp (transform.position, player.position, ref smoothVelocity, smoothTime);
+		}
 		if (rhizHealth == 0) {
-			Destroy (gameObject);
+			enemyCount--;
+			gameObject.SetActive(false);
+			newGun = true;
+			Debug.Log (enemyCount);
+		}
+
+		if (enemyCount == 0) {
+			door.SetActive (false);
+		}
+		if (newGun == true) {
+			damage = 15;
+
 		}
 	}
 }

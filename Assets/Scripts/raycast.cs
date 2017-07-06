@@ -8,8 +8,10 @@ public class raycast : MonoBehaviour
 	// Use this for initialization
 	Camera thisCamera;
 
+
 	void Start ()
 	{
+		
 		thisCamera = this.GetComponent<Camera> ();
 		if (thisCamera == null)
 			this.gameObject.SetActive (false);
@@ -31,19 +33,17 @@ public class raycast : MonoBehaviour
 		if (Physics.Raycast (ray, out hit, 100f)) {
 			// ...draw a green ray extending the distance of the collision
 			Debug.DrawRay (ray.origin, ray.direction * hit.distance, Color.green);
-			if (Input.GetKey (KeyCode.Mouse0)) {
-				if (hit.transform.gameObject.tag == "Rhizopa" && PlayerScript.playerDamage == 5) {
-					RhizopaCombat.rhizHealth -= 5;
+			if (Input.GetKeyDown (KeyCode.Mouse0)) {
+				if (hit.transform.gameObject.tag == "Rhizopa") {
+					hit.collider.gameObject.GetComponent<RhizopaCombat>().rhizHealth -= RhizopaCombat.damage;
+					RhizopaCombat.pSystem.Play ();
 				}
-				if (hit.transform.gameObject.tag == "Rhizopa (1)" && PlayerScript.playerDamage == 5) {
-					RhizopaCombat.rhiz1Health -= 5;
+				if (hit.transform.gameObject.tag == "RhizBoss") {
+					BossScript.bossHealth -= 15;
+					RhizopaCombat.pSystem.Play ();
 				}
-				if (hit.transform.gameObject.tag == "Rhizopa (2)" && PlayerScript.playerDamage == 5) {
-					RhizopaCombat.rhiz2Health -= 5;
-				}
-				if (hit.transform.gameObject.tag == "Rhizopa (3)" && PlayerScript.playerDamage == 5) {
-					RhizopaCombat.rhiz3Health -= 5;
-				}
+
+
 			}
 
 		}
