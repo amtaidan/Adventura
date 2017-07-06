@@ -18,4 +18,5 @@ public class GameManager : MonoBehaviour {
 	public void LoadLevel(){
 		SceneManager.LoadScene ("levelOne");
 	}
+
 }

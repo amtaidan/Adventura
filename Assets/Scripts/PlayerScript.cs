@@ -20,4 +20,14 @@ public class PlayerScript : MonoBehaviour {
 			gun.transform.Translate (-.5f, 0f, 0f);
 		}
 	}
+	void OnCollisionEnter(Collision other) {
+		if (other.gameObject.tag == "Rhizopa") {
+			playerHealth -= 10;
+			Debug.Log (playerHealth);
+		}
+		if (other.gameObject.tag == "RhizBoss") {
+			playerHealth -= 20;
+			Debug.Log (playerHealth);
+		}
+	}
 }

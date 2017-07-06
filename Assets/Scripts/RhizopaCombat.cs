@@ -12,9 +12,9 @@ public class RhizopaCombat : MonoBehaviour {
 	public GameObject door;
 	public static ParticleSystem pSystem;
 	public Transform player;
-	public float walkingDistance = 5.0f;
-	public float smoothTime = 10.0f;
-	private Vector3 smoothVelocity = Vector3.zero*20;
+	public float walkingDistance = 30.0f;
+	public float smoothTime = 2.0f;
+	private Vector3 smoothVelocity = Vector3.zero*10.0f;
 
 	// Use this for initialization
 	void Start () {
