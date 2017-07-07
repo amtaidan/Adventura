@@ -7,14 +7,17 @@ public class PlayerScript : MonoBehaviour {
 
 	public static int playerHealth = 50;
 	public GameObject gun;
+	public AudioSource shot;
+	public AudioClip gunshot;
 	// Use this for initialization
 	void Start () {
-		
+		shot = GetComponent<AudioSource> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetKeyDown (KeyCode.Mouse0)) {
+			shot.PlayOneShot(gunshot);
 			Debug.Log("move");
 			gun.transform.Translate (.5f, 0f, 0f);
 			new WaitForSeconds(2);
