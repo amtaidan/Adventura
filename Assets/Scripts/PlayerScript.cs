@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerScript : MonoBehaviour {
 
@@ -19,6 +20,9 @@ public class PlayerScript : MonoBehaviour {
 			new WaitForSeconds(2);
 			gun.transform.Translate (-.5f, 0f, 0f);
 		}
+		if (playerHealth == 0) {
+			LoadLevel ();
+		}
 	}
 	void OnCollisionEnter(Collision other) {
 		if (other.gameObject.tag == "Rhizopa") {
@@ -30,4 +34,8 @@ public class PlayerScript : MonoBehaviour {
 			Debug.Log (playerHealth);
 		}
 	}
-}
+		public void LoadLevel(){
+			SceneManager.LoadScene ("Lose");
+		}
+	}
+
